@@ -4,6 +4,7 @@ const idx = require('idx')
 const router = express.Router()
 
 const {
+    getAllUsers,
     getUserById,
     getUserActivityById,
     getUserAverageSession,
@@ -14,6 +15,11 @@ const {
     handleNoUserData
 } = require('./middleware')
 
+
+router.get('/users', (req, res) => {
+    const allUsers = getAllUsers()
+    return res.json(allUsers)
+})
 
 router.get('/user/:id', (req, res) => {
     const userId = idx(req, _ => _.params.id)
